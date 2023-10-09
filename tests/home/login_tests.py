@@ -1,13 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import  By
-import time
+import unittest
 from selenium.common.exceptions import NoSuchElementException
 from pages.home.login_page import LoginPage
 
 
 
 
-class LoginTests():
+class LoginTests(unittest.TestCase ):
     def test_valid_login(self):
         base_url = "https://www.userlike.com/en/"
         driver = webdriver.Chrome()
@@ -32,9 +32,3 @@ class LoginTests():
         except NoSuchElementException:
             print("Element not found and login is not successful")
 
-
-
-
-
-start = LoginTests()
-start.test_valid_login()

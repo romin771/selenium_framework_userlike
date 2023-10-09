@@ -1,12 +1,14 @@
 from selenium.webdriver.common.by import By
 import time
+from base.selenium_driver import SeleniumDriver
 
 
-class LoginPage():
+class LoginPage(SeleniumDriver):
     def __init__(self, driver):
+        super().__init__(driver)
         self.driver = driver
 
-        # locators
+    # locators
     _login_button = '[data-test-id="button-to-login"]'
     _email_field = "username"
     _password_field = "password"
@@ -14,31 +16,18 @@ class LoginPage():
     _dashboard_navbar = ".navbar.navbar-fixed-top.navbar-inverse"
 
 
-
-    # expose locator to web elements -methods to expose locators as elemens
-    def get_login_button(self):
-        return self.driver.find_element(By.CSS_SELECTOR, self._login_button)
-    def get_username_field(self):
-        return self.driver.find_element(By.NAME, self._email_field)
-    def get_password_field(self):
-        return self.driver.find_element(By.NAME, self._password_field)
-    def get_login_submitt_button(self):
-        return self.driver.find_element(By.CSS_SELECTOR, self._login_submitt_button)
-
-
-    # Perform Action on Elements
     def click_login_button(self):
-        self.get_login_button().click()
+        self.elementClick(self._login_button, "css")
     def insert_username(self, email):
-        self.get_username_field().click()
-        if self.get_username_field().get_attribute("value"):
-            self.get_username_field().clear()
-        self.get_username_field().send_keys(email)
+        self.elementClick(self._email_field, "name")
+        if self.getElement(self._email_field, "name").get_attribute("value"):
+            self.getElement(self._email_field, "name").clear()
+        self.sendKeys(email, self._email_field, 'name', )
     def inser_password(self, password):
-        self.get_password_field().click()
-        self.get_password_field().send_keys(password)
+        self.elementClick(self._password_field, "name")
+        self.sendKeys(password, self._password_field, "name")
     def submit_login_button(self):
-        self.get_login_submitt_button().click()
+        self.elementClick(self._login_submitt_button, "css")
 
 
     def login(self, username, password):

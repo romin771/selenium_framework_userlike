@@ -50,6 +50,16 @@ class SeleniumDriver():
             print(" // cannot click on the element with locator: " + locator + " and locatorType: " + locatorType)
             print_stack()
 
+    # take care of the name, it should not be send_keys otherwise it will conflict with selenium predefice function
+    def sendKeys(self,data , locator, locatorType ="id"):
+        try:
+            element = self.getElement(locator, locatorType)
+            element.send_keys(data)
+            print(" // send data on this ::  " + locator + " which has this locatorType ::  " + locatorType)
+        except:
+            print(" // it is not possible to send data to this locator : " + locator + " which has this locatorType: " + locatorType)
+            print_stack()
+
 
 
 

@@ -18,17 +18,7 @@ class LoginTests(unittest.TestCase ):
         #create object of LoginPage
         lp = LoginPage(driver)
         lp.login("romin.parvardeh@gmail.com", "RominRomin!234!234")
+        assert lp.isElementDisplayed(".navbar.navbar-fixed-top.navbar-inverse", "css") == True
 
 
-
-        try:
-            # Try to find the element
-            dashboard_navbar = driver.find_element(By.CSS_SELECTOR, ".navbar.navbar-fixed-top.navbar-inverse")
-            # Check if the element is displayed
-            if dashboard_navbar.is_displayed():
-                print("////////// login is successfull")
-            else:
-                print(" /////////// login is not successful")
-        except NoSuchElementException:
-            print("/////////// Element not found and login is not successful")
 

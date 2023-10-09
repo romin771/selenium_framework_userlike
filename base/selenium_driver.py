@@ -36,9 +36,9 @@ class SeleniumDriver():
             locatorType = locatorType.lower()
             byType = self.getByType(locatorType)
             element = self.driver.find_element(byType, locator)
-            print(f"// element found :: {element}")
+            print(f"// element found with locator :: " + locator + "and locator type" + locatorType)
         except:
-            print(f"// element not found :: {element}")
+            print(f"// element not found with locator " + locator + "and locator type" + locatorType)
         return element
 
     def elementClick(self,locator, locatorType ="id" ):
@@ -55,10 +55,37 @@ class SeleniumDriver():
         try:
             element = self.getElement(locator, locatorType)
             element.send_keys(data)
-            print(" // send data on this ::  " + locator + " which has this locatorType ::  " + locatorType)
+            print(" // send thisdata " + data+ "on this ::  " + locator + " which has this locatorType ::  " + locatorType)
         except:
-            print(" // it is not possible to send data to this locator : " + locator + " which has this locatorType: " + locatorType)
+            print(" // it is not possible to send this data " + data+ " to this locator : " + locator + " which has this locatorType: " + locatorType)
             print_stack()
+
+
+    def isElementPresent(self, locator , locatorType):
+        try:
+            element = self.getElement(locator, locatorType)
+            if element is not None:
+                print("element found")
+                return True
+            else:
+                print("element not found ")
+                return False
+        except:
+            print("element not found ")
+            return False
+
+    def isElementDisplayed(self, locator, locatorType="id"):
+        try:
+            element = self.getElement(locator, locatorType)
+            if element.is_displayed():
+                print("Element is displayed")
+                return True
+            else:
+                print("Element is not displayed")
+                return False
+        except:
+            print("Element not found")
+            return False
 
 
 

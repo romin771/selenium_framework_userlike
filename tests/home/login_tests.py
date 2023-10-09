@@ -26,9 +26,9 @@ class LoginTests(unittest.TestCase ):
             dashboard_navbar = driver.find_element(By.CSS_SELECTOR, ".navbar.navbar-fixed-top.navbar-inverse")
             # Check if the element is displayed
             if dashboard_navbar.is_displayed():
-                print("login is successfull")
+                print("////////// login is successfull")
             else:
-                print("login is not successful")
+                print(" /////////// login is not successful")
         except NoSuchElementException:
-            print("Element not found and login is not successful")
+            print("/////////// Element not found and login is not successful")
 

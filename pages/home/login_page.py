@@ -28,16 +28,27 @@ class LoginPage(SeleniumDriver):
         self.sendKeys(email, self._email_field, 'name', )
     def inser_password(self, password):
         self.elementClick(self._password_field, "name")
+        if self.getElement(self._password_field, "name").get_attribute("value"):
+            self.getElement(self._password_field, "name").clear()
         self.sendKeys(password, self._password_field, "name")
     def submit_login_button(self):
         self.elementClick(self._login_submitt_button, "css")
 
 
-    def login(self, username, password):
+    def login(self, username="", password=""): #make username/password optional
         self.click_login_button()
         self.insert_username(username)
         self.inser_password(password)
         time.sleep(1)
         self.submit_login_button()
+    def verify_successful_login(self):
+        result = self.isElementDisplayed(".navbar.navbar-fixed-top.navbar-inverse", "css")
+        return result
+
+    def verify_fail_login(self):
+        result = self.isElementDisplayed('[data-test-id="login-error-list"]', locatorType="css")
+        return result
+
+
 
 

@@ -1,11 +1,15 @@
 """  Here we wrap all the methods provided  by selenium webdriver into
 our custome method to use in our framework """
-
+import logging
 
 from selenium.webdriver.common.by import By
 from traceback import print_stack
+import utilities.custom_logger as cl
+import logging
 
 class SeleniumDriver():
+    # make sure its not under __init__ method otherwise its not showing logs are comming from seleniumDriver
+    log = cl.customLogger(logging.DEBUG)
 
     def __init__(self, driver):
         self.driver = driver
@@ -26,7 +30,7 @@ class SeleniumDriver():
         elif locatorType == "linktext":
             return By.LINK_TEXT
         else:
-            print("// The enteres locator type " + locatorType + " is not correct/supported")
+            self.log.info("//The entered locator type is" + locatorType + " is not correct/supported")
         return False
 
 
@@ -36,18 +40,18 @@ class SeleniumDriver():
             locatorType = locatorType.lower()
             byType = self.getByType(locatorType)
             element = self.driver.find_element(byType, locator)
-            print(f"// element found with locator :: " + locator + "and locator type" + locatorType)
+            self.log.info(f"//element found with locator :: " + locator + "  and locator type" + locatorType)
         except:
-            print(f"// element not found with locator " + locator + "and locator type" + locatorType)
+            self.log.info(f"// element not found with locator " + locator + "  and locator type" + locatorType)
         return element
 
     def elementClick(self,locator, locatorType ="id" ):
         try:
             element = self.getElement(locator, locatorType)
             element.click()
-            print(" // clicked on element with locator ::  " + locator + " and locatorType ::  " + locatorType)
+            self.log.info(" // clicked on element with locator ::  " + locator + "  and locatorType ::  " + locatorType)
         except:
-            print(" // cannot click on the element with locator: " + locator + " and locatorType: " + locatorType)
+            self.log.info(" // cannot click on the element with locator: " + locator + " and locatorType: " + locatorType)
             print_stack()
 
     # take care of the name, it should not be send_keys otherwise it will conflict with selenium predefice function
@@ -55,9 +59,9 @@ class SeleniumDriver():
         try:
             element = self.getElement(locator, locatorType)
             element.send_keys(data)
-            print(" // send thisdata " + data+ "on this ::  " + locator + " which has this locatorType ::  " + locatorType)
+            self.log.info(" // send this data " + data+ "  on this locator ::  " + locator + " which has this locatorType ::  " + locatorType)
         except:
-            print(" // it is not possible to send this data " + data+ " to this locator : " + locator + " which has this locatorType: " + locatorType)
+            self.log.info(" // it is not possible to send this data " + data+ " to this locator : " + locator + " which has this locatorType: " + locatorType)
             print_stack()
 
 
@@ -65,26 +69,26 @@ class SeleniumDriver():
         try:
             element = self.getElement(locator, locatorType)
             if element is not None:
-                print("element found")
+                self.log.info("element found")
                 return True
             else:
-                print("element not found ")
+                self.log.info("element not found ")
                 return False
         except:
-            print("element not found ")
+            self.log.info("element not found ")
             return False
 
     def isElementDisplayed(self, locator, locatorType="id"):
         try:
             element = self.getElement(locator, locatorType)
             if element.is_displayed():
-                print("Element is displayed")
+                self.log.info("Element is displayed")
                 return True
             else:
-                print("Element is not displayed")
+                self.log.info("Element is not displayed")
                 return False
         except:
-            print("Element not found")
+            self.log.info("Element not found")
             return False
 
 

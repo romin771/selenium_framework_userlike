@@ -1,4 +1,3 @@
-from selenium import webdriver
 import unittest
 from pages.home.login_page import LoginPage
 import pytest
@@ -16,10 +15,8 @@ class LoginTests(unittest.TestCase):
     def test_valid_login(self):
         self.lp.login("romin.parvardeh@gmail.com", "RominRomin!234!234")
         success_login = self.lp.verify_successful_login()
-        #assert success_login == True
         self.ts.mark(success_login, "login was not successfull")
-        title_verified = self.lp.verify_title()
-        #assert title_verified == True
+        title_verified = self.lp.verify_login_title()
         self.ts.markFinal("test_valid_login", title_verified, "logig wasn not successful")
 
 

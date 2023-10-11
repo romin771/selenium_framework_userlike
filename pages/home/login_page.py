@@ -1,11 +1,10 @@
-from selenium.webdriver.common.by import By
 import time
-from base.selenium_driver import SeleniumDriver
 import utilities.custom_logger as cl
 import logging
+from base.basepage import BasePage
 
 
-class LoginPage(SeleniumDriver):
+class LoginPage(BasePage):
     log = cl.customLogger(logging.DEBUG)
     def __init__(self, driver):
         super().__init__(driver)
@@ -49,11 +48,8 @@ class LoginPage(SeleniumDriver):
         result = self.isElementDisplayed('[data-test-id="login-error-list"]', locatorType="css")
         return result
 
-    def verify_title(self):
-        if "Userlike" in self.getTitle():
-            return True
-        else:
-            return False
+    def verify_login_title(self):
+        return self.verifyPageTitle("Userlike")
 
 
 

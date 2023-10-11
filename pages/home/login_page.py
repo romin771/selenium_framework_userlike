@@ -49,6 +49,12 @@ class LoginPage(SeleniumDriver):
         result = self.isElementDisplayed('[data-test-id="login-error-list"]', locatorType="css")
         return result
 
+    def verify_title(self):
+        if "Userlike" in self.getTitle():
+            return True
+        else:
+            return False
+
 
 
 

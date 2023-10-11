@@ -14,6 +14,8 @@ class SeleniumDriver():
     def __init__(self, driver):
         self.driver = driver
 
+    def getTitle(self):
+        return self.driver.title
     def getByType(self, locatorType):
         locatorType = locatorType.lower()
 
@@ -34,7 +36,7 @@ class SeleniumDriver():
         return False
 
 
-    def getElement(self,locator, locatorType="id"):
+    def getElement(self, locator, locatorType="id"):
         element = None
         try:
             locatorType = locatorType.lower()
@@ -45,7 +47,7 @@ class SeleniumDriver():
             self.log.info(f"// element not found with locator " + locator + "  and locator type" + locatorType)
         return element
 
-    def elementClick(self,locator, locatorType ="id" ):
+    def elementClick(self, locator, locatorType ="id"):
         try:
             element = self.getElement(locator, locatorType)
             element.click()

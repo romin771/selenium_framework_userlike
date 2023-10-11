@@ -16,6 +16,8 @@ class SeleniumDriver():
 
     def getTitle(self):
         return self.driver.title
+    def getCurrentUrl(self):
+        return self.driver.current_url
     def getByType(self, locatorType):
         locatorType = locatorType.lower()
 

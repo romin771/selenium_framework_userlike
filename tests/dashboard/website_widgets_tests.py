@@ -23,13 +23,18 @@ class widget_create(unittest.TestCase):
     def test_creating_web_widget(self):
         self.login.login("romin5954@gmail.com", "RominRomin!234!234")
         time.sleep(2)
-        self.driver.find_element(By.XPATH,  "//*[text()='Channels']").click()
+        self.driver.find_element(By.XPATH, "//*[text()='Channels']").click()
         self.driver.find_element(By.XPATH, "//a[text()='Website widgets']").click()
-        self.sd.isElementPresent("//div[@class='modal-header']/h2[contains(text(), 'Your new Widget')]",locatorType="xpath") == True
+        url_verified = self.ww.verify_website_widget_url()
+        assert url_verified == True
+        self.sd.isElementPresent("//div[@class='modal-header']/h2[contains(text(), 'Your new Widget')]",
+                                 locatorType="xpath") == True
         self.sd.elementClick("widgetWizard", locatorType="id")
         self.sd.elementClick("btn-success", locatorType="classname")
         self.ww.close_widget()
         time.sleep(2)
+
+
 
     @pytest.mark.run(order=2)
     def test_deleting_web_widget(self):

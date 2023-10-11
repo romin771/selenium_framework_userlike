@@ -1,5 +1,6 @@
 from base.selenium_driver import SeleniumDriver
 from selenium.webdriver.common.by import By
+import time
 
 class Website_widget(SeleniumDriver):
 
@@ -31,6 +32,13 @@ class Website_widget(SeleniumDriver):
     def close_widget(self):
         self.elementClick(self._close_new_widget_popup, locatorType="classname")
 
+    def number_of_widgets(self):
+        tbody_element = self.driver.find_element(By.XPATH, "//tbody")
+        widgets = tbody_element.find_elements(By.TAG_NAME, "tr")
+        return len(widgets)
+
+
+
     def delete_last_created_widget(self):
         widget_row = self.driver.find_element(By.TAG_NAME, "tbody")
         widget_rows = widget_row.find_elements(By.TAG_NAME, "tr")
@@ -44,6 +52,12 @@ class Website_widget(SeleniumDriver):
         else:
             # Handle other cases if needed
             print("Unexpected number of child <tr> elements.")
+
+    def verify_website_widget_url(self):
+        if "um_widget" in self.getCurrentUrl():
+            return True
+        else:
+            return False
 
 
 

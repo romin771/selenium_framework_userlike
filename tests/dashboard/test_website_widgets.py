@@ -19,7 +19,7 @@ class widget_create(unittest.TestCase):
         self.ww = Website_widget(self.driver)
 
 
-    @pytest.mark.run(order=1)
+    @pytest.mark.run(order=3)
     def test_creating_web_widget(self):
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//*[text()='Channels']").click()
@@ -33,9 +33,8 @@ class widget_create(unittest.TestCase):
         self.ww.close_widget()
         time.sleep(2)
 
-    @pytest.mark.run(order=2)
+    @pytest.mark.run(order=4)
     def test_deleting_web_widget(self):
-        time.sleep(2)
         self.ww.delete_last_created_widget()
         self.driver.quit()
 

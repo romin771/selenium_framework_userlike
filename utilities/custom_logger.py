@@ -1,5 +1,6 @@
 import inspect
 import logging
+import os
 
 
 def customLogger(logLevel=logging.DEBUG): #defult value is DEBUG, so if we dont privide it from outside, we want everything gonna be log
@@ -9,8 +10,18 @@ def customLogger(logLevel=logging.DEBUG): #defult value is DEBUG, so if we dont 
     # By default, log all messages
     logger.setLevel(logging.DEBUG)
 
-    fileHandler = logging.FileHandler("automation.log", mode='w') # if we want to override, we can change to 'w', append "a"
+    if not os.path.exists('reports'):
+        os.makedirs('reports')
+
+    # Specify the log file path inside the 'reports' directory
+    log_file_path = os.path.join('reports', 'automation.log')
+
+    fileHandler = logging.FileHandler(log_file_path, mode='w')
     fileHandler.setLevel(logLevel)
+
+
+
+
 
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s',
                     datefmt='%m/%d/%Y %I:%M:%S %p')

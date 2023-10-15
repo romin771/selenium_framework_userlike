@@ -8,7 +8,7 @@ from base.selenium_driver import SeleniumDriver
 from pages.dashboard.website_widgets_page import Website_widget
 
 
-@pytest.mark.usefixtures("oneTimeSetUp", "setUp")
+@pytest.mark.usefixtures("oneTimeSetUp", "login")
 class widget_create(unittest.TestCase):
 
     @pytest.fixture(autouse=True)  # class level setup
@@ -21,7 +21,6 @@ class widget_create(unittest.TestCase):
 
     @pytest.mark.run(order=1)
     def test_creating_web_widget(self):
-        self.login.login("romin5954@gmail.com", "RominRomin!234!234")
         time.sleep(2)
         self.driver.find_element(By.XPATH, "//*[text()='Channels']").click()
         self.driver.find_element(By.XPATH, "//a[text()='Website widgets']").click()
@@ -33,8 +32,6 @@ class widget_create(unittest.TestCase):
         self.sd.elementClick("btn-success", locatorType="classname")
         self.ww.close_widget()
         time.sleep(2)
-
-
 
     @pytest.mark.run(order=2)
     def test_deleting_web_widget(self):

@@ -15,7 +15,7 @@
 
 Hey there! Welcome to my Selenium and Pytest-based Test Automation Framework. This is my playground where I'm showing off my skills in building automation stuff using Python.
 
-Think of it like a cool recipe I've whipped up. It's all about creating a special kind of test automation framework, and I'm using a pattern called the Page Object Model (POM) to make it super organized.
+Think of it like a cool recipe I've whipped up. It's all about creating a special kind of test automation framework, and I'm using a pattern called the Page Object Model (POM) to make it organized.
 
 But here's the twist - I'm not keeping it all to myself. I'm going to keep improving it so that anyone else can use it and have fun while automating things. Let's learn and laugh together on this automation adventure! 😄🚀
 ## Project Structure

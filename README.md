@@ -17,7 +17,7 @@ Hey there! Welcome to my Selenium and Pytest-based Test Automation Framework. Th
 
 Think of it like a cool recipe I've whipped up. It's all about creating a special kind of test automation framework, and I'm using a pattern called the Page Object Model (POM) to make it super organized.
 
-But here's the twist - I'm not keeping it all to myself. I'm going to keep improving it so that you, me, and anyone else can use it and have fun while automating things. Let's learn and laugh together on this automation adventure! 😄🚀
+But here's the twist - I'm not keeping it all to myself. I'm going to keep improving it so that anyone else can use it and have fun while automating things. Let's learn and laugh together on this automation adventure! 😄🚀
 ## Project Structure
 
 The framework follows a structured organization of directories and files, promoting modularity, reusability, and maintainability.
